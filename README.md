@@ -1,8 +1,4 @@
-<html>
-<title>PureVPN OpenVPN Config Generator</title>
-
-<xmp theme="simplex" style="display:none;">
-# Readme
+# PureVPN OpenVPN Config Generator
 
 ## Introduction
 
@@ -22,7 +18,3 @@ Hope you can enjoy it!
 	* Web crawler: [`scrapy`](http://scrapy.readthedocs.io/en/latest/)
 
 	#####Note: You can simply install `pip` packages by `pip install -r requirements.txt` 
-</xmp>
-
-<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
-</html>
