@@ -19,14 +19,6 @@ class purevpnserverlistSpider(Spider):
         purevpn_data_list = []
         body = response.xpath('//tbody[@id="servers_data"]/tr')
         for index, tbody in enumerate(body):
-            # yield {
-            #     'region': tbody.xpath('td[1]/text()').extract(),
-            #     'country': tbody.xpath('td[2]/text()').extract(),
-            #     'city': tbody.xpath('td[3]/text()').extract(),
-            #     'server_address_1': tbody.xpath('td[4]/text()').extract(),
-            #     'server_address_2': tbody.xpath('td[5]/text()').extract(),
-            #     'server_address_3': tbody.xpath('td[6]/text()').extract()
-            # }
             purevpn_data = PurevpnServerListItem()
             purevpn_data['region'] = tbody.xpath('td[1]/text()').extract()
             purevpn_data['country'] = tbody.xpath('td[2]/text()').extract()
@@ -39,7 +31,4 @@ class purevpnserverlistSpider(Spider):
             purevpn_data['address_openvpn_tcp'] = tbody.xpath(
                 'td[6]/text()').extract()
             purevpn_data_list.append(purevpn_data)
-
-            # args = (index, tbody.xpath('td[1]/text()').extract(), tbody.xpath('td[2]/text()').extract())
-            # print (args)
         return purevpn_data_list

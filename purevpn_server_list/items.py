@@ -10,7 +10,6 @@ import scrapy
 
 class PurevpnServerListItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
     region = scrapy.Field()
     country = scrapy.Field()
     city = scrapy.Field()
