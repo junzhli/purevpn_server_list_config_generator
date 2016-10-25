@@ -12,7 +12,7 @@ from purevpn_server_list.util import cleanup
 def crawler_from_server():
     settings = get_project_settings()
     settings.set('FEED_FORMAT', 'json', priority='cmdline')
-    settings.set('FEED_URI', os.path.join('templates', 'data.json'))
+    settings.set('FEED_URI', os.path.join('templates', 'data.json'), priority='cmdline')
     process = CrawlerProcess(settings)
 
     process.crawl(purevpnserverlistSpider)
