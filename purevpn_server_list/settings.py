@@ -14,7 +14,6 @@ BOT_NAME = 'purevpn_server_list'
 SPIDER_MODULES = ['purevpn_server_list.spiders']
 NEWSPIDER_MODULE = 'purevpn_server_list.spiders'
 
-
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'purevpn_server_list (+http://www.yourdomain.com)'
 

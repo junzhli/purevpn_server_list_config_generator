@@ -8,10 +8,11 @@ from scrapy.utils.project import get_project_settings
 from purevpn_server_list.spiders.base import purevpnserverlistSpider
 from purevpn_server_list.util import cleanup
 
+
 def crawler_from_server():
     settings = get_project_settings()
-    settings.overrides['FEED_FORMAT'] = 'json'
-    settings.overrides['FEED_URI'] = os.path.join('templates', 'data.json')
+    settings.set('FEED_FORMAT', 'json', priority='cmdline')
+    settings.set('FEED_URI', os.path.join('templates', 'data.json'))
     process = CrawlerProcess(settings)
 
     process.crawl(purevpnserverlistSpider)
@@ -25,21 +26,34 @@ def read_server_list():
 
 
 def generate_config_file(server, protocol):
-    supported_protocol = {'TCP': [server['address_openvpn_tcp'], '80'], 'UDP': [server['address_openvpn_udp'], '53']}
+    supported_protocol = {
+        'TCP': [server['address_openvpn_tcp'], '80'],
+        'UDP': [server['address_openvpn_udp'], '53']
+    }
     if protocol in supported_protocol:
         # TCP/UDP solution
-        with open(os.path.join('templates', protocol + '.ovpn'), 'r') as tempFile:
+        with open(os.path.join('templates', protocol + '.ovpn'),
+                  'r') as tempFile:
             data = tempFile.readlines()
-        data[3] = ' '.join(map(str, ['remote', supported_protocol[protocol][0], supported_protocol[protocol][1], '\n']))
+        data[3] = ' '.join(
+            map(str, [
+                'remote', supported_protocol[protocol][0], supported_protocol[
+                    protocol][1], '\n'
+            ]))
 
         create_folder_if_nesscessary(os.path.join('generated_config_file'))
-        with open(os.path.join('generated_config_file', '-'.join([server['region'], server['country'], server['city'], protocol]) + '.ovpn'), 'w') as file:
+        with open(
+                os.path.join('generated_config_file', '-'.join([
+                    server['region'], server['country'], server['city'],
+                    protocol
+                ]) + '.ovpn'), 'w') as file:
             file.writelines(data)
 
 
 def create_folder_if_nesscessary(directory):
     if not os.path.exists(directory):
         os.makedirs(directory)
+
 
 if __name__ == '__main__':
 

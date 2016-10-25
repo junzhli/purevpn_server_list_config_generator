@@ -3,6 +3,7 @@
 import os
 import shutil
 
+
 def cleanup(file_or_folder):
     try:
         if os.path.isfile(file_or_folder):
