@@ -17,4 +17,4 @@ Hope you can enjoy it!
 	* Package Manager: [`pip`](https://pip.pypa.io/en/stable/)
 	* Web crawler: [`scrapy`](http://scrapy.readthedocs.io/en/latest/)
 
-	#####Note: You can simply install `pip` packages by `pip install -r requirements.txt` 
+##### Note: You can simply install `pip` packages by `pip install -r requirements.txt` 
